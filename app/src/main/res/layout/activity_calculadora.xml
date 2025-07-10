@@ -95,5 +95,45 @@
         android:text="Regresar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    class CalculadoraActivity : AppCompatActivity() {
+    private lateinit var lblUsuario: TextView
+    private lateinit var txtNum1: EditText
+    private lateinit var txtNum2: EditText
+    private lateinit var lblResultado: TextView
+    private lateinit var btnSuma: Button
+    private lateinit var btnResta: Button
+    private lateinit var btnMult: Button
+    private lateinit var btnDiv: Button
+    private lateinit var btnLimpiar: Button
+    private lateinit var btnRegresar: Button
+
+    private val calculadora = Calculadora()  // 👉 AÑADE ESTO
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+    // lo demás igual...
+    }
+
+    private fun operar(op: String) {
+    val num1 = txtNum1.text.toString().toFloatOrNull()
+    val num2 = txtNum2.text.toString().toFloatOrNull()
+
+    if (num1 == null || num2 == null) {
+    lblResultado.text = "Ingresa números"
+    return
+    }
+
+    calculadora.setNumeros(num1, num2) // Usa la clase
+
+    val res = when (op) {
+    "+" -> calculadora.suma()
+    "-" -> calculadora.resta()
+    "*" -> calculadora.multiplicacion()
+    "/" -> calculadora.division()
+    else -> "?"
+    }
+
+    lblResultado.text = "Resultado: $res"
+    }
+    }
 
 </LinearLayout>

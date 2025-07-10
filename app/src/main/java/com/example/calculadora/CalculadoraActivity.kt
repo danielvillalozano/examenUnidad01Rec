@@ -19,6 +19,8 @@ class CalculadoraActivity : AppCompatActivity() {
     private lateinit var btnLimpiar: Button
     private lateinit var btnRegresar: Button
 
+    private val calculadora = Calculadora()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculadora)
@@ -62,12 +64,14 @@ class CalculadoraActivity : AppCompatActivity() {
             return
         }
 
+        calculadora.setNumeros(num1, num2)
+
         val res = when (op) {
-            "+" -> num1 + num2
-            "-" -> num1 - num2
-            "*" -> num1 * num2
-            "/" -> if (num2 != 0f) num1 / num2 else "Error"
-            else -> "?"
+            "+" -> calculadora.suma()
+            "-" -> calculadora.resta()
+            "*" -> calculadora.multiplicacion()
+            "/" -> calculadora.division()
+            else -> 0f
         }
 
         lblResultado.text = "Resultado: $res"
