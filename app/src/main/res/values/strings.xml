@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Calculadora</string>
+    <string name="usuario_def">daniel</string>
+    <string name="pass_def">1234</string>
+</resources>
